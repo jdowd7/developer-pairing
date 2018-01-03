@@ -7,15 +7,17 @@ namespace Interview.Test
 {
     public class AssetTest
     {
-        [Fact]
-        public void AssetSeedTest_ValidSeedNumberProvide_ShouldReturnListSeeds()
+        [Theory]
+        [InlineData(10)]
+        [InlineData(500)]
+        [InlineData(999)]
+        public void AssetSeedTest_ValidSeedNumberProvide_ShouldReturnListSeeds(int seedQuant)
         {
+            // Arrange & Act
+            var result = Asset.GetSeedData(seedQuant);
 
-            var result = Asset.GetSeedData(999);
-
-            Assert.True(result.Any());
-
-
+            // Assert
+            Assert.True(result.Count() == seedQuant);
         }
     }
 }
