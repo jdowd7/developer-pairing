@@ -11,9 +11,8 @@ import { Component, OnInit } from '@angular/core';
 
 export class DisplayComponentComponent implements OnInit {
 
-  constructor(private assetsService: AssetsService) { }
-
   results: any[];
+  constructor(private assetsService: AssetsService) { }
 
   ngOnInit() {
     this.assetsService.getAssts().subscribe(res => {
