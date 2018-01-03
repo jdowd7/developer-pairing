@@ -10,7 +10,7 @@ namespace Interview.Test
         [Theory]
         [InlineData(10)]
         [InlineData(500)]
-        [InlineData(999)]
+        [InlineData(1000)]
         public void AssetSeedTest_ValidSeedNumberProvide_ShouldReturnListSeeds(int seedQuant)
         {
             // Arrange & Act
@@ -18,6 +18,19 @@ namespace Interview.Test
 
             // Assert
             Assert.True(result.Count() == seedQuant);
+        }
+
+        [Theory]
+        [InlineData(9)]
+        [InlineData(1001)]
+        [InlineData(-1)]
+        public void AssetSeedTest_InvalidSeedNumberProvide_ShouldThrowInvalidException(int seedQuant)
+        {
+            // Arrange & Act
+            var exception = Record.Exception(() => Asset.GetSeedData(seedQuant));
+
+            // Assert
+            Assert.True(exception?.GetType() == typeof(ArgumentOutOfRangeException));
         }
     }
 }
