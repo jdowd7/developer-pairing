@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
 using Interview.Entities.Interfaces;
 
 namespace Interview.Entities
@@ -25,25 +26,47 @@ namespace Interview.Entities
     public bool IsDeleted { get; set; }
     public ICollection<AssetFields> Fields { get; set; }
 
-    public static List<Asset> GetSeedData()
+    public static IEnumerable<Asset> GetSeedData(int assetNumber)  //int assetNumber)
     {
-      return new List<Asset>()
-      {
-        new Asset()
-        {
-          Name = "test",
-          CreatedBy = new Guid(),
-          Fields = new List<AssetFields>()
-          {
-            new AssetFields()
+            if (assetNumber < 10 || assetNumber > 1000) throw new ArgumentOutOfRangeException($"Invalid Asset Quantity: {assetNumber}. Enter quantity between 10-1000.");
+
+            // Setting fixed length to lower memory
+            var seedList = new List<Asset>(assetNumber);
+
+            for (int i = 0; i < assetNumber; i++)
             {
-              Name = "test asset field",
-              StringVal = "string val"
+                seedList.Add(CreateAsset());
             }
-          }
-        }
-      };
+
+            // Conserve Memory
+            return seedList.ToArray();
+
     }
+
+      private static Asset CreateAsset()
+      {
+          var guid = Guid.NewGuid();
+          var numFields = guid.ToByteArray();
+          var bitConverter = BitConverter.ToInt64(numFields, 0) % 1000;
+
+          var addAsset = new Asset();
+          addAsset.Fields = new List<AssetFields>();
+          addAsset.Name = $"test{bitConverter}";
+          addAsset.CreatedBy = guid;
+
+
+          for (int i = 0; i < bitConverter; i++)
+          {
+              addAsset.Fields.Add(new AssetFields
+                  {
+                      Name = $"test asset field_{i+1}",
+                      StringVal = $"string val_{i+1}"
+              });
+          }
+
+          return addAsset;
+
+      }
 
   }
 }
