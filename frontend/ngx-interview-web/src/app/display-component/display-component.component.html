@@ -1,8 +1,23 @@
 <div>
-    <!--<mat-table #resultTable [serviceResults]="serviceResults">
+    <mat-table #table [dataSource]="dataSource">
         <ng-container matColumnDef="id">
             <mat-header-cell *matHeaderCellDef> Id. </mat-header-cell>
             <mat-cell *matCellDef="let Asset"> {{Asset.id}} </mat-cell>
         </ng-container>
-    </mat-table>-->
+
+        <ng-container matColumnDef="name">
+            <mat-header-cell *matHeaderCellDef> Name. </mat-header-cell>
+            <mat-cell *matCellDef="let Asset"> {{Asset.name}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="isDeleted">
+            <mat-header-cell *matHeaderCellDef> Deleted. </mat-header-cell>
+            <mat-cell *matCellDef="let Asset"> {{Asset.isDeleted}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="dateCreated">
+            <mat-header-cell *matHeaderCellDef> Date Created. </mat-header-cell>
+            <mat-cell *matCellDef="let Asset"> {{Asset.dateCreated}} </mat-cell>
+        </ng-container>
+    </mat-table>
 </div>

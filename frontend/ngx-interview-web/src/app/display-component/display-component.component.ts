@@ -1,7 +1,8 @@
 import { AssetsService } from './../services/assets.service';
 import { Observable } from 'rxjs/Observable';
 import { Component, OnInit } from '@angular/core';
-// import { MatTableDataSource } from '@angular/material';
+import { MatTableModule } from '@angular/material/table';
+import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
   selector: 'app-display-component',
@@ -14,7 +15,8 @@ export class DisplayComponentComponent implements OnInit {
 
   results: any[];
 
-  // serviceResults = new MatTableDataSource<Asset>(this.results);
+  assetColumns = ['ID', 'Name', 'Deleted', 'Date Created'];
+  dataSource = new MatTableDataSource<Asset>(this.results);
 
   constructor(private assetsService: AssetsService) { }
 

@@ -5,8 +5,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpModule, JsonpModule } from '@angular/http';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatListModule } from '@angular/material/list';
-
+import { MatTableModule } from '@angular/material/table';
 
 import { AppComponent } from './app.component';
 import { DisplayComponentComponent } from './display-component/display-component.component';
@@ -22,7 +21,7 @@ import { DisplayComponentComponent } from './display-component/display-component
     HttpModule,
     JsonpModule,
     BrowserAnimationsModule,
-    MatListModule
+    MatTableModule
   ],
   providers: [
     AssetsService,
