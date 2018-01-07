@@ -4,6 +4,9 @@ import { CommonService } from './services/common.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpModule, JsonpModule } from '@angular/http';
 import { NgModule } from '@angular/core';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatListModule } from '@angular/material/list';
+
 
 import { AppComponent } from './app.component';
 import { DisplayComponentComponent } from './display-component/display-component.component';
@@ -12,11 +15,14 @@ import { DisplayComponentComponent } from './display-component/display-component
   declarations: [
     AppComponent,
     DisplayComponentComponent
+
   ],
   imports: [
     BrowserModule,
     HttpModule,
-    JsonpModule
+    JsonpModule,
+    BrowserAnimationsModule,
+    MatListModule
   ],
   providers: [
     AssetsService,
