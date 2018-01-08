@@ -19,7 +19,7 @@ namespace Interview.Data
       {
         return;
       };
-      context.Assets.AddRange(Asset.GetSeedData());
+      context.Assets.AddRange(Asset.GetSeedData(20));
       context.SaveChanges();
     }
 
