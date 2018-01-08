@@ -53,6 +53,7 @@ namespace Interview.Entities
           addAsset.Fields = new List<AssetFields>();
           addAsset.Name = $"test{bitConverter}";
           addAsset.CreatedBy = guid;
+          addAsset.ModifiedBy = guid;
 
 
           for (int i = 0; i < bitConverter; i++)
