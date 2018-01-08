@@ -1,4 +1,6 @@
 <div>
+    <mat-spinner *ngIf not="dataLoaded"></mat-spinner>
+
     <mat-table #table [dataSource]="dataSource">
         <ng-container matColumnDef="id">
             <mat-header-cell *matHeaderCellDef> Id. </mat-header-cell>
@@ -19,5 +21,13 @@
             <mat-header-cell *matHeaderCellDef> Date Created. </mat-header-cell>
             <mat-cell *matCellDef="let Asset"> {{Asset.dateCreated}} </mat-cell>
         </ng-container>
+
+        <ng-container matColumnDef="assetFields">
+            <mat-header-cell *matHeaderCellDef> Asset Fields. </mat-header-cell>
+            <mat-cell *matCellDef="let Asset"> {{Asset.assetFields}} </mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="assetColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: assetColumns;"></mat-row>
     </mat-table>
 </div>
