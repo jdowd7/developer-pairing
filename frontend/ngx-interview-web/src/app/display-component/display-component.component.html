@@ -1,6 +1,7 @@
 <div>
-    <mat-spinner *ngIf not="dataLoaded"></mat-spinner>
-
+    <h3 style="text-align:center">
+        Data should be below:
+    </h3>
     <mat-table #table [dataSource]="dataSource">
         <ng-container matColumnDef="id">
             <mat-header-cell *matHeaderCellDef> Id. </mat-header-cell>
