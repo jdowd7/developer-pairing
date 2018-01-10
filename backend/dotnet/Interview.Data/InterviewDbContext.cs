@@ -28,6 +28,15 @@ namespace Interview.Data
       return !total.Except(applied).Any();
     }
 
+    //protected override void OnModelCreating(ModelBuilder modelBuilder)
+    //{
+    //    modelBuilder.Entity<Asset>().ToTable("Asset");
+    //    modelBuilder.Entity<AssetFields>().ToTable("AssetField");
+
+    //    modelBuilder.Entity<AssetFields>()
+    //        .HasKey(c => new { c.AssetId });
+    //}
+
     public DbSet<Asset> Assets { get; set; }
     public DbSet<AssetFields> AssetFields { get; set; }
   }

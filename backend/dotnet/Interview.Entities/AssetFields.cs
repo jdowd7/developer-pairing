@@ -18,5 +18,8 @@ namespace Interview.Entities
     public float? FloatVal { get; set; }
     public double? DblVal { get; set; }
 
+    public int AssetId { get; set; }
+    public virtual Asset Asset { get; set; }
+
   }
 }

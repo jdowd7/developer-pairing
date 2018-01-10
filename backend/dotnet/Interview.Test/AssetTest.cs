@@ -17,7 +17,9 @@ namespace Interview.Test
             var result = Asset.GetSeedData(seedQuant);
 
             // Assert
-            Assert.True(result.Count() == seedQuant);
+            var assetResultList = result.ToList();
+            Assert.True(assetResultList.Count() == seedQuant);
+            Assert.True(assetResultList.FirstOrDefault()?.Fields.Any());
         }
 
         [Theory]

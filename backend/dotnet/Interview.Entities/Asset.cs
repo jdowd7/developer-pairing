@@ -24,36 +24,39 @@ namespace Interview.Entities
     public DateTime DateModifiedUTC { get; set; }
     public Guid ModifiedBy { get; set; }
     public bool IsDeleted { get; set; }
-    public ICollection<AssetFields> Fields { get; set; }
+
+    public virtual ICollection<AssetFields> Fields { get; set; }
 
     public static IEnumerable<Asset> GetSeedData(int assetNumber)  //int assetNumber)
     {
-            if (assetNumber < 10 || assetNumber > 1000) throw new ArgumentOutOfRangeException($"Invalid Asset Quantity: {assetNumber}. Enter quantity between 10-1000.");
+        if (assetNumber < 10 || assetNumber > 1000) throw new ArgumentOutOfRangeException($"Invalid Asset Quantity: {assetNumber}. Enter quantity between 10-1000.");
 
-            // Setting fixed length to lower memory
-            var seedList = new List<Asset>(assetNumber);
+        // Setting fixed length to lower memory
+        var seedList = new List<Asset>(assetNumber);
 
-            for (int i = 0; i < assetNumber; i++)
-            {
-                seedList.Add(CreateAsset());
-            }
+        for (int i = 0; i < assetNumber; i++)
+        {
+            seedList.Add(CreateAsset());
+        }
 
-            // Conserve Memory
-            return seedList.ToArray();
+        // Conserve Memory
 
-    }
+        return seedList.ToArray();
+      }
 
       private static Asset CreateAsset()
       {
           var guid = Guid.NewGuid();
           var numFields = guid.ToByteArray();
-          var bitConverter = BitConverter.ToInt64(numFields, 0) % 1000;
+          var bitConverter = BitConverter.ToInt64(numFields, 0) % 100; // more tens places on the modulo value, higher the returned random number; % 1000 would return a 3 digit number
 
           var addAsset = new Asset();
           addAsset.Fields = new List<AssetFields>();
           addAsset.Name = $"test{bitConverter}";
           addAsset.CreatedBy = guid;
           addAsset.ModifiedBy = guid;
+          addAsset.DateCreatedUTC = DateTime.UtcNow;
+          addAsset.DateModifiedUTC = DateTime.UtcNow;
 
 
           for (int i = 0; i < bitConverter; i++)

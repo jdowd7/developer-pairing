@@ -15,14 +15,27 @@ namespace Interview.Data
 
     private static void SeedData(InterviewDbContext context)
     {
-      if (context.Assets.Any())
+      const bool keepData = false;
+
+      if (context.Assets.Any() && keepData)
       {
         return;
       };
-      context.Assets.AddRange(Asset.GetSeedData(20));
+
+      Random rnd = new Random();
+      int seedInt = rnd.Next(10, 1000); 
+
+      var assetResults = Asset.GetSeedData(seedInt).ToList();
+
+      context.Assets.AddRange(assetResults);
       context.SaveChanges();
+
+      foreach (var asset in assetResults)
+      {
+        context.AssetFields.AttachRange(asset.Fields);
+        context.SaveChanges();
+      }
+      
     }
-
-
   }
 }
