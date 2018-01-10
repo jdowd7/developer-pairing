@@ -24,7 +24,8 @@ namespace Interview.Entities
     public DateTime DateModifiedUTC { get; set; }
     public Guid ModifiedBy { get; set; }
     public bool IsDeleted { get; set; }
-
+    
+    
     public virtual ICollection<AssetFields> Fields { get; set; }
 
     public static IEnumerable<Asset> GetSeedData(int assetNumber)  //int assetNumber)
