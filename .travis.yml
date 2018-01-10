@@ -1,8 +1,9 @@
 sudo: required
+services:
+  - docker
 dist: trusty
 language: node_js, csharp
 solution: api.sln
-language: csharp
 mono: none
 dotnet: 1.1.0
 script:
@@ -35,4 +36,3 @@ before_script:
 - npm run pree2e
 - npm run ng lint
 - npm run ng build --prod
-- npm test
