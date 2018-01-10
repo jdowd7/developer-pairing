@@ -15,7 +15,7 @@ namespace Interview.Data
 
     private static void SeedData(InterviewDbContext context)
     {
-      const bool keepData = false;
+      const bool keepData = true;
 
       if (context.Assets.Any() && keepData)
       {
