@@ -6,6 +6,7 @@ import { HttpModule, JsonpModule } from '@angular/http';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatTableModule, MatProgressSpinnerModule } from '@angular/material';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { DisplayComponentComponent } from './display-component/display-component.component';
@@ -22,7 +23,8 @@ import { DisplayComponentComponent } from './display-component/display-component
     JsonpModule,
     BrowserAnimationsModule,
     MatTableModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    HttpClientModule
   ],
   providers: [
     AssetsService,

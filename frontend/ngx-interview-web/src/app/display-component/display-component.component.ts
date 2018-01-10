@@ -1,7 +1,9 @@
 import { AssetsService } from './../services/assets.service';
 import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/observable/of';
 import { Component, OnInit } from '@angular/core';
 import { MatTableModule, MatTableDataSource } from '@angular/material';
+import { DataSource } from '@angular/cdk/collections';
 
 @Component({
   selector: 'app-display-component',
@@ -13,26 +15,29 @@ import { MatTableModule, MatTableDataSource } from '@angular/material';
 export class DisplayComponentComponent implements OnInit {
 
   results: any[];
-  dataSource = new MatTableDataSource<Asset>(this.results);
+  // dataSource = new AssetDataSource();
+  dataSource = new MatTableDataSource<Asset>();
   assetColumns = ['ID', 'Name', 'Deleted', 'Date Created', 'Asset Fields'];
   dataLoaded = false;
 
-  private onAssetsEmitted(inData: Asset[]): any[] {
+  private onAssetsEmitted(inData: any[]) {
     if (!inData || !inData.length) {
       // Filler data for display purposes
-      inData = DEFAULT_ASSET_DATA
+       this.dataSource = new MatTableDataSource(DEFAULT_ASSET_DATA);
     } else {
+      // Data loaded successfully
       this.dataLoaded = true;
     }
-    return inData;
   }
 
   constructor(private assetsService: AssetsService) { }
 
   ngOnInit() {
     this.assetsService.getAssts().subscribe(res => {
-      this.results = this.onAssetsEmitted(res);
+      this.results = res;
     })
+    this.dataSource = new MatTableDataSource<Asset>(this.results);
+    this.onAssetsEmitted(this.dataSource.data);
   }
 }
 
