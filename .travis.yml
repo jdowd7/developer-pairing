@@ -1,6 +1,15 @@
 sudo: required
 dist: trusty
-language: node_js
+language: node_js, csharp
+solution: api.sln
+language: csharp
+mono: none
+dotnet: 1.1.0
+script:
+ - dotnet restore
+branches:
+  only:
+    - interview-backend-seed-updates
 node_js:
 - '6'
 cache:
